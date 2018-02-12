@@ -1,0 +1,9 @@
+---
+  # Vars: NTP servers
+
+  ntp_server1: 0.pool.ntp.org
+  ntp_server2: 1.pool.ntp.org
+  ntp_server3: 2.pool.ntp.org
+  ntp_server4: 3.pool.ntp.org
+
+  ntp_timezone: Europe/Amsterdam

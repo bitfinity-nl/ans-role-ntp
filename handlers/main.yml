@@ -1,0 +1,26 @@
+---
+  # handlers: NTP
+  #
+  # start
+  # stop
+  # restart
+
+  - name: "service_start_ntp"
+    service:
+      name: ntp
+      state: started
+
+  - name: "service_stop_ntp"
+    service:
+      name: ntp
+      state: stopped
+
+  - name: "service_restart_ntp"
+    service:
+      name: ntp
+      state: restarted
+
+  - name: "service_restart_crond"
+    service:
+      name: cron
+      state: restarted

@@ -1,0 +1,24 @@
+---
+  # Tasks: Install NTP server on Ubuntu 16.04LTS
+
+  - name: "Install NTP"
+    apt:
+      name: ntp
+      update_cache: yes
+      state: present
+    notify:
+      - service_stop_ntp
+
+  - name: "Transfer ntp.conf to client"
+    template:
+      src: ntp.conf.j2
+      dest: /etc/ntp.conf
+      backup: yes
+    notify:
+      - service_start_ntp
+
+  - name: "Set timezone"
+    timezone:
+      name: "{{ ntp_timezone }}"
+    notify:
+      - service_restart_crond
