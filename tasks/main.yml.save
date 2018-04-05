@@ -1,3 +1,8 @@
+cecefef
+
+
+
+
 ---
   # Role: Install NTP server
   #
@@ -7,5 +12,5 @@
   - name: "For OS: Ubuntu 16.04LTS, Arch: amd64"
     import_tasks: ubuntu-1604-amd64.yml
     when:
-      - ansible_distribution == "Ubuntu"
+      - ansible_lsb["description"] == "Ubuntu 16.04.3 LTS"
       - ansible_architecture == "x86_64"
