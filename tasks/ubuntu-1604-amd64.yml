@@ -1,6 +1,11 @@
 ---
   # Tasks: Install NTP server on Ubuntu 16.04LTS
 
+  - name: "check if ntp is installed, otherwise skipping"
+    stat:
+      path: /etc/ntp.conf
+    register: ntp_active
+
   - name: "Install NTP"
     apt:
       name: ntp
@@ -8,6 +13,7 @@
       state: present
     notify:
       - service_stop_ntp
+    when: ntp_active.stat.exists == False
 
   - name: "Transfer ntp.conf to client"
     template:

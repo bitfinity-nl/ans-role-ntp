@@ -1,0 +1,24 @@
+---
+  # Title: Set current date and time on remote host
+  #
+  # Author: Luc Rutten
+  # File: ubt-set-current-time.yml
+  #
+  # Description:
+  #   Set current date and time on host
+
+  - name: "register time from Ansible control machine"
+    shell: date +"%Y%m%d %H:%M:%S"
+    register: setcurrentdate
+    delegate_to: "{{ localhost }}"
+
+  - name: "Display current date and time"
+    debug:
+      msg: "{{ setcurrentdate.stdout }}"
+
+  - name: "Set current date and time"
+    shell: 'date --set="{{ setcurrentdate.stdout }}"'
+
+  - name: "Synchronize to BIOS clock"
+    shell: "hwclock --systohc"
+
