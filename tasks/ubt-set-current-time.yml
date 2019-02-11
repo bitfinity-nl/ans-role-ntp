@@ -10,7 +10,7 @@
   - name: "register time from Ansible control machine"
     shell: date +"%Y%m%d %H:%M:%S"
     register: setcurrentdate
-    delegate_to: "{{ localhost }}"
+    delegate_to: localhost
 
   - name: "Display current date and time"
     debug:
